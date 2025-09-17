@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HealthHub — Practical health guides & wellness</title>
+  <meta name="description" content="HealthHub — practical, evidence-informed health guides, wellness tips, and simple tools to help you live better." />
+  <meta name="author" content="Your Name" />
+  <meta name="robots" content="index, follow" />
+
+  <style>
+    :root{
+      --maxw:1150px; --accent:#0ea5a1; --muted:#6b7280; --bg:#ffffff; --panel:#f8fafc;
+      --radius:12px; --shadow: 0 8px 30px rgba(16,24,40,0.06);
+      --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:var(--font-sans);color:#0f172a;background:var(--bg);}
+    a{color:var(--accent);text-decoration:none}
+    header{background:linear-gradient(90deg,#ecfeff,#ffffff);border-bottom:1px solid #e6eef0}
+    .container{max-width:var(--maxw);margin:0 auto;padding:20px}
+
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#06b6d4,#06d6a0);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:18px}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{padding:8px 12px;border-radius:10px;font-weight:700}
+    nav a.active{background:rgba(14,165,161,0.08)}
+
+    main{padding:28px 0}
+    .grid{display:grid;grid-template-columns:1fr 340px;gap:28px}
+    .card{background:var(--panel);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+
+    .hero{display:grid;grid-template-columns:1fr 320px;gap:18px;margin-bottom:18px}
+    .hero .feature{background:white;padding:18px;border-radius:12px;border:1px solid #eef2f7}
+    .feature h1{margin:0 0 8px 0}
+    .feature p{margin:0;color:var(--muted)}
+
+    .posts{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .post{padding:14px;border-radius:10px;background:white;border:1px solid #eef2f7}
+    .post h3{margin:0 0 8px 0}
+    .post p{margin:0;color:var(--muted);font-size:14px}
+
+    .sidebar .widget{margin-bottom:14px}
+
+    footer{padding:28px 0;color:var(--muted);font-size:14px}
+
+    /* responsive */
+    @media (max-width:980px){
+      .grid{grid-template-columns:1fr}
+      .posts{grid-template-columns:1fr}
+      nav{display:none}
+      .mobile-nav{display:flex}
+      .hero{grid-template-columns:1fr}
+    }
+    .mobile-nav{display:none}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--accent);color:white;font-weight:700}
+
+    /* contact form */
+    form input, form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef0;margin-bottom:8px}
+    .meta{font-size:13px;color:var(--muted)}
+
+    .tag{display:inline-block;font-size:12px;padding:6px 8px;border-radius:999px;background:#eef8f7;margin-right:8px}
+
+    /* bold clickable actions */
+    .bold-action{
+      display:block;
+      font-weight:800;
+      cursor:pointer;
+      padding:6px 0;
+      user-select:none;
+    }
+    .bold-action:hover{color:#088f8a}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container topbar">
+      <div class="brand">
+        <div class="logo">CH</div>
+        <div>
+          <div style="font-weight:800">Check Your Health</div>
+          <div class="meta">Practical health guides & wellness tips</div>
+        </div>
+      </div>
+
+      <nav id="nav">
+        <a href="#home" data-route="home">Home</a>
+        <a href="#news" data-route="news">News</a>
+        <a href="#tutorials" data-route="tutorials">Tutorials</a>
+        <a href="#tools" data-route="tools">Tools</a>
+        <a href="#wellness" data-route="wellness">Wellness</a>
+        <a href="#about" data-route="about">About</a>
+        <a href="#contact" data-route="contact">Contact</a>
+      </nav>
+
+      <div class="mobile-nav">
+        <button class="btn" onclick="navigate('home')">Open</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="view">
+      <!-- HOME -->
+      <section id="home" class="page">
+
+        <div class="hero">
+          <div class="feature card">
+            <span class="tag">Featured</span>
+            <h1>5 Simple Habits That Boost Your Daily Health</h1>
+            <p class="meta">Easy, evidence-based habits you can start today — sleep, movement, hydration, mindful eating, and stress breaks.</p>
+            <div style="height:12px"></div>
+            <a class="btn" href="#tutorials" onclick="navigate('tutorials')">Read Guides</a>
+          </div>
+
+          <aside class="card">
+            <h4 style="margin-top:0">Search</h4>
+            <input id="search" placeholder="Search articles..." oninput="filterPosts()" />
+            <div style="height:12px"></div>
+
+            <div style="height:8px"></div>
+            <h4>Newsletter</h4>
+            <p class="meta">Get a weekly health tip. Connect Mailchimp/ConvertKit to capture emails.</p>
+            <input placeholder="your@email.com" />
+            <div style="height:8px"></div>
+            <button class="btn" onclick="alert('Connect a newsletter service to capture emails')">Subscribe</button>
+          </aside>
+        </div>
+
+        <div class="grid">
+          <div>
+            <div class="card posts">
+              <!-- Sample posts -->
+              <article class="post">
+                <h3>How to Improve Sleep Quality in 4 Weeks</h3>
+                <p class="meta">A step-by-step sleep plan for better energy and recovery.</p>
+              </article>
+
+              <article class="post">
+                <h3>Beginner's Strength Routine (No Gym Needed)</h3>
+                <p class="meta">Simple bodyweight exercises you can do at home to build strength safely.</p>
+              </article>
+
+              <article class="post">
+                <h3>Meal Prep for Busy People: 3-Day Plan</h3>
+                <p class="meta">Quick recipes and shopping list to keep nutrition consistent during hectic weeks.</p>
+              </article>
+
+              <article class="post">
+                <h3>Managing Stress with Micro-Breaks</h3>
+                <p class="meta">Short, science-backed breaks that reset focus and calm your nervous system.</p>
+              </article>
+
+              <article class="post">
+                <h3>Understanding Supplements: What Helps, What Doesn’t</h3>
+                <p class="meta">An evidence-first look at common supplements and practical guidance.</p>
+              </article>
+
+              <article class="post">
+                <h3>Tracking Health: Simple Metrics That Matter</h3>
+                <p class="meta">Which measures (sleep, steps, mood) are useful and how to track them simply.</p>
+              </article>
+
+            </div>
+
+            <div style="height:16px"></div>
+
+            <!-- ADSENSE PLACEHOLDER -->
+            <div class="card">
+              <h4 style="margin-top:0">Ad space (placeholder)</h4>
+              <p class="meta">After AdSense approval, paste the AdSense script and ad unit where indicated in this file.</p>
+              <!-- ADSENSE: PLACEHOLDER -->
+            </div>
+
+          </div>
+
+          <aside class="sidebar">
+            <div class="card widget">
+              <h4 style="margin-top:0">Popular</h4>
+              <ol style="padding-left:18px;margin:0">
+                <li>How to Improve Sleep Quality in 4 Weeks</li>
+                <li>Meal Prep for Busy People: 3-Day Plan</li>
+                <li>Beginner's Strength Routine (No Gym Needed)</li>
+              </ol>
+            </div>
+
+            <div class="card widget">
+              <h4 style="margin-top:0">Categories</h4>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <a href="#news" onclick="navigate('news')">News</a>
+                <a href="#tutorials" onclick="navigate('tutorials')">Tutorials</a>
+                <a href="#tools" onclick="navigate('tools')">Tools</a>
+                <a href="#wellness" onclick="navigate('wellness')">Wellness</a>
+              </div>
+            </div>
+
+            <!-- NEW: Quick Actions with bold clickable text -->
+            <div class="card widget">
+              <h4 style="margin-top:0">Quick Actions</h4>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <!-- data-action format: "<type>:<payload>" -->
+                <strong class="bold-action" data-action="navigate:news">Latest News</strong>
+                <strong class="bold-action" data-action="search:sleep">Search: "sleep"</strong>
+                <strong class="bold-action" data-action="navigate:tutorials">Open Tutorials</strong>
+                <strong class="bold-action" data-action="bmi:70,175">Example BMI (70kg,175cm)</strong>
+                <strong class="bold-action" data-action="mailto:you@yourdomain.com">Email Site Owner</strong>
+                <strong class="bold-action" data-action="navigate:contact">Contact Page</strong>
+              </div>
+            </div>
+
+            <div class="card widget">
+              <h4 style="margin-top:0">Quick Tool</h4>
+              <p class="meta">BMI Calculator (simple)</p>
+              <div style="display:flex;gap:8px">
+                <input id="bmiWeight" placeholder="kg" style="width:70px" />
+                <input id="bmiHeight" placeholder="cm" style="width:70px" />
+                <button class="btn" onclick="calcBMI()">Calc</button>
+              </div>
+              <p id="bmiResult" class="meta" style="margin-top:8px"></p>
+            </div>
+
+          </aside>
+        </div>
+      </section>
+
+      <!-- NEWS -->
+      <section id="news" class="page" style="display:none">
+        <div class="card">
+          <h2>Health News</h2>
+          <p class="meta">Short news items and updates from the world of health — studies, guidelines, and public health updates.</p>
+
+          <article class="post" style="margin-top:12px">
+            <h3>New Study: Walking 30 Minutes Improves Cardiovascular Markers</h3>
+            <p class="meta">Summary of recent findings and practical takeaways for daily routines.</p>
+          </article>
+
+          <article class="post" style="margin-top:12px">
+            <h3>Nutrition Guideline Updates: What Changed</h3>
+            <p class="meta">Key points from the latest guideline changes and how to adapt your meals.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- TUTORIALS -->
+      <section id="tutorials" class="page" style="display:none">
+        <div class="card">
+          <h2>Tutorials & How-Tos</h2>
+          <p class="meta">Step-by-step guides that help you build healthy habits and routines.</p>
+
+          <article class="post" style="margin-top:12px">
+            <h3>4-Week Sleep Improvement Plan</h3>
+            <p class="meta">A progressive plan with nightly rituals and tracking tips.</p>
+          </article>
+
+          <article class="post" style="margin-top:12px">
+            <h3>Beginner’s Guide to Resistance Training</h3>
+            <p class="meta">Exercises, progressions, and safety tips for beginners.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- TOOLS -->
+      <section id="tools" class="page" style="display:none">
+        <div class="card">
+          <h2>Tools</h2>
+          <p class="meta">Small tools and calculators to help you plan and track health goals.</p>
+
+          <div style="margin-top:12px">
+            <h4>BMI Calculator</h4>
+            <p class="meta">Use the calculator in the sidebar or here for more details.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- WELLNESS -->
+      <section id="wellness" class="page" style="display:none">
+        <div class="card">
+          <h2>Wellness & Lifestyle</h2>
+          <p class="meta">Mindful practices, sleep, stress management, and everyday wellness habits.</p>
+
+          <article class="post" style="margin-top:12px">
+            <h3>Micro-Meditations for Busy Days</h3>
+            <p class="meta">Short practices you can do at work or between meetings.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="page" style="display:none">
+        <div class="card">
+          <h2>About HealthHub</h2>
+          <p class="meta">HealthHub is a starter template for health-focused sites. Our goal is to provide practical, evidence-informed tips and guides that help readers take small, sustainable steps toward better health.</p>
+
+          <h3>How to use this template</h3>
+          <ol>
+            <li>Replace the site title and logo text.</li>
+            <li>Publish 10–20 original, high-quality articles across categories before applying to AdSense.</li>
+            <li>Customize the Privacy Policy to reflect real data practices.</li>
+            <li>Connect a newsletter provider and a proper backend for contact forms.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="page" style="display:none">
+        <div class="card">
+          <h2>Contact</h2>
+          <p class="meta">Use the form below. For production, use a service like Formspree, Formsubmit, or your own backend to capture messages.</p>
+
+          <form id="contactForm" onsubmit="submitContact(event)">
+            <input id="name" placeholder="Your name" required />
+            <input id="email" placeholder="Your email" type="email" required />
+            <textarea id="message" placeholder="Your message" rows="6" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+
+          <p style="margin-top:12px" class="meta">Or email directly: <a href="mailto:you@yourdomain.com">you@yourdomain.com</a></p>
+        </div>
+      </section>
+
+      <!-- PRIVACY (single page) -->
+      <section id="privacy" class="page" style="display:none">
+        <div class="card">
+          <h2>Privacy Policy</h2>
+          <p class="meta">This is a sample privacy policy. Edit to reflect how you collect and use data. Google AdSense typically requires a clear privacy policy.</p>
+
+          <h3>What we collect</h3>
+          <p class="meta">We may collect analytics, cookies, and information you voluntarily submit via forms. We may use third-party services (like Google Analytics, AdSense) that collect data as described in their policies.</p>
+
+          <h3>Ads</h3>
+          <p class="meta">We display ads from third-party advertising services (such as Google AdSense). These services may use cookies to show relevant ads.</p>
+
+          <h3>Contact</h3>
+          <p class="meta">Contact the site owner via the Contact page for any privacy inquiries.</p>
+        </div>
+      </section>
+
+    </div>
+
+    <div style="height:18px"></div>
+
+    <footer class="container">
+      <div style="max-width:var(--maxw);margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>© <span id="year"></span> HealthHub</div>
+        <div class="meta">Starter template — add original content before applying to AdSense.</div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    // ------------------ Simple SPA routing ------------------
+    function showRoute(route){
+      document.querySelectorAll('.page').forEach(s => s.style.display = 'none');
+      const el = document.getElementById(route);
+      if(el) el.style.display = '';
+
+      document.querySelectorAll('#nav a').forEach(a => a.classList.remove('active'));
+      const link = document.querySelector('#nav a[data-route="'+route+'"]');
+      if(link) link.classList.add('active');
+      window.scrollTo(0,0);
+    }
+
+    function navigate(route){
+      const clean = String(route).replace(/^#+/, '');
+      if(location.hash.replace('#','') !== clean){
+        location.hash = clean;
+      } else {
+        showRoute(clean);
+      }
+    }
+
+    function handleHash(){
+      const h = location.hash.replace('#','') || 'home';
+      showRoute(h);
+    }
+    window.addEventListener('hashchange', handleHash);
+
+    // initialize: attach click handlers for nav links and bold actions
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('#nav a[data-route]').forEach(a => {
+        a.addEventListener('click', function(e){
+          e.preventDefault();
+          const route = this.getAttribute('data-route');
+          navigate(route);
+        });
+      });
+
+      // attach bold-action handlers
+      document.querySelectorAll('.bold-action').forEach(el => {
+        el.addEventListener('click', () => {
+          const action = el.getAttribute('data-action') || '';
+          handleBoldAction(action);
+        });
+      });
+
+      handleHash();
+    });
+
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // contact form simple handler
+    function submitContact(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      // Basic fallback: open user's email client
+      const subject = encodeURIComponent('Contact from ' + name);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+      location.href = 'mailto:you@yourdomain.com?subject=' + subject + '&body=' + body;
+    }
+
+    // post search filter
+    function filterPosts(){
+      const q = (document.getElementById('search').value || '').toLowerCase();
+      document.querySelectorAll('.post').forEach(p => {
+        const title = p.querySelector('h3') ? p.querySelector('h3').innerText : '';
+        const para = p.querySelector('p') ? p.querySelector('p').innerText : '';
+        const t = (title + ' ' + para).toLowerCase();
+        p.style.display = t.includes(q) ? '' : 'none';
+      });
+    }
+
+    function calcBMI(){
+      const w = parseFloat(document.getElementById('bmiWeight').value);
+      const hVal = parseFloat(document.getElementById('bmiHeight').value);
+      const out = document.getElementById('bmiResult');
+      if(!w || !hVal){ out.textContent = 'Enter weight and height to calculate BMI.'; return; }
+      const h = hVal / 100;
+      const bmi = (w / (h*h)).toFixed(1);
+      out.textContent = 'BMI: ' + bmi + ' — ' + (bmi < 18.5 ? 'Underweight' : bmi < 25 ? 'Normal' : bmi < 30 ? 'Overweight' : 'Obese');
+    }
+
+    // Handler for bold-action items: uses simple "type:payload" format
+    function handleBoldAction(actionStr){
+      if(!actionStr) return;
+      const idx = actionStr.indexOf(':');
+      let type = actionStr;
+      let payload = '';
+      if(idx >= 0){
+        type = actionStr.slice(0, idx);
+        payload = actionStr.slice(idx + 1);
+      }
+
+      switch(type){
+        case 'navigate':
+          // payload is a route id (e.g., "news")
+          navigate(payload || 'home');
+          break;
+        case 'search':
+          // payload is search term
+          document.getElementById('search').value = payload || '';
+          filterPosts();
+          // show home where posts live
+          navigate('home');
+          break;
+        case 'bmi':
+          // payload format: "weight,height" (e.g., "70,175")
+          const parts = (payload || '').split(',').map(s => s.trim());
+          if(parts.length >= 2){
+            document.getElementById('bmiWeight').value = parts[0];
+            document.getElementById('bmiHeight').value = parts[1];
+            calcBMI();
+            // scroll to sidebar (optional)
+            // navigate to home so sidebar visible
+            navigate('home');
+          } else {
+            alert('BMI action requires payload like "70,175" (kg,cm)');
+          }
+          break;
+        case 'mailto':
+          // payload is email address
+          location.href = 'mailto:' + payload;
+          break;
+        case 'contact':
+          navigate('contact');
+          break;
+        default:
+          console.warn('Unknown bold-action type:', type);
+      }
+    }
+
+    // Helpful console message for next steps (fixed to a template literal)
+    console.log(`
+=== HealthHub Starter: Next Steps ===
+1) Replace the example posts with original health articles (10-20 quality posts recommended).
+2) Host this file on your domain and ensure it is publicly reachable.
+3) Customize the Privacy Policy and contact details.
+4) Apply to Google AdSense; after approval, paste your AdSense script and ad units in the marked placeholders.
+=================================
+`);
+  </script>
+</body>
+</html>
